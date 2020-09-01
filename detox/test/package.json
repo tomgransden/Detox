@@ -117,7 +117,7 @@
         "build": "cd android && ./gradlew assembleFromBinDebug assembleFromBinDebugAndroidTest -DtestBuildType=debug && cd ..",
         "type": "android.emulator",
         "device": {
-          "avdName": "Nexus_5_API_25"
+          "avdName": "Pixel_API_28"
         }
       },
       "android.emu.release": {
@@ -128,7 +128,7 @@
         "build": "cd android && ./gradlew assembleFromBinRelease assembleFromBinReleaseAndroidTest -DtestBuildType=release && cd ..",
         "type": "android.emulator",
         "device": {
-          "avdName": "Nexus_5_API_25"
+          "avdName": "Pixel_API_28"
         }
       },
       "android.geny.release": {
