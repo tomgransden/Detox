@@ -4,6 +4,7 @@ import android.view.InputDevice;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.wix.detox.espresso.UiControllerJournal;
 import com.wix.detox.reactnative.ReactNativeExtension;
 
 import org.hamcrest.Matcher;
@@ -22,7 +23,7 @@ public class RNClickAction implements ViewAction {
 
     public RNClickAction() {
         clickAction = new GeneralClickAction(
-                        new DetoxSingleTap(),
+                        new DetoxSingleTap(UiControllerJournal.getJournal()),
                         GeneralLocation.VISIBLE_CENTER,
                         Press.FINGER,
                         InputDevice.SOURCE_UNKNOWN,
@@ -31,7 +32,7 @@ public class RNClickAction implements ViewAction {
 
     public RNClickAction(CoordinatesProvider coordinatesProvider) {
         clickAction = new GeneralClickAction(
-                        new DetoxSingleTap(),
+                        new DetoxSingleTap(UiControllerJournal.getJournal()),
                         coordinatesProvider,
                         Press.FINGER,
                         InputDevice.SOURCE_UNKNOWN,

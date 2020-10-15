@@ -4,6 +4,7 @@ import android.view.MotionEvent
 import androidx.test.espresso.UiController
 import androidx.test.espresso.action.Tapper
 import com.nhaarman.mockitokotlin2.*
+import com.wix.detox.common.proxy.MethodCallJournal
 import com.wix.detox.espresso.common.TapEvents
 import org.assertj.core.api.Assertions.*
 import org.spekframework.spek2.Spek
@@ -23,6 +24,7 @@ object DetoxMultiTapSpec: Spek({
         lateinit var mock1stTapEventsSeq: List<MotionEvent>
         lateinit var mock2ndTapEventsSeq: List<MotionEvent>
         lateinit var tapEvents: TapEvents
+        lateinit var uiControllerCallJournal: MethodCallJournal
 
         beforeEachTest {
             uiController = mock()
@@ -38,6 +40,8 @@ object DetoxMultiTapSpec: Spek({
                 on { createEventsSeq(any(), any(), isNull()) }.doReturn(mock1stTapEventsSeq)
                 on { createEventsSeq(any(), any(), any()) }.doReturn(mock2ndTapEventsSeq)
             }
+
+            uiControllerCallJournal = mock()
         }
 
         fun verify1stTapEventsSeqGenerated() = verify(tapEvents).createEventsSeq(coordinates, precision, null)
@@ -51,7 +55,7 @@ object DetoxMultiTapSpec: Spek({
         fun givenInjectionFailure() = whenever(uiController.injectMotionEventSequence(any())).thenReturn(false)
         fun givenInjectionError() = whenever(uiController.injectMotionEventSequence(any())).doThrow(RuntimeException("exceptionMock"))
 
-        fun uut(times: Int) = DetoxMultiTap(times, interTapDelayMs, COOLDOWN_TIME, tapEvents)
+        fun uut(times: Int) = DetoxMultiTap(times, interTapDelayMs, COOLDOWN_TIME, tapEvents, uiControllerCallJournal)
         fun sendOneTap() = uut(1).sendTap(uiController, coordinates, precision, -1, -1)
         fun sendTwoTaps() = uut(2).sendTap(uiController, coordinates, precision, -1, -1)
 

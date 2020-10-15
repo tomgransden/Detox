@@ -3,6 +3,7 @@ package com.wix.detox.espresso.action
 import android.view.MotionEvent
 import androidx.test.espresso.UiController
 import androidx.test.espresso.action.Tapper
+import com.wix.detox.common.proxy.MethodCallJournal
 import com.wix.detox.espresso.common.DetoxViewConfigurations.getDoubleTapMinTime
 import com.wix.detox.espresso.common.DetoxViewConfigurations.getPostTapCoolDownTime
 import com.wix.detox.espresso.common.TapEvents
@@ -28,7 +29,8 @@ open class DetoxMultiTap
             private val times: Int,
             private val interTapsDelayMs: Long = getDoubleTapMinTime(),
             private val coolDownTime: Long = getPostTapCoolDownTime(),
-            private val tapEvents: TapEvents = TapEvents())
+            private val tapEvents: TapEvents = TapEvents(),
+            private val uiControllerCallJournal: MethodCallJournal)
     : Tapper {
 
     override fun sendTap(uiController: UiController?, coordinates: FloatArray?, precision: FloatArray?)
@@ -46,6 +48,8 @@ open class DetoxMultiTap
             if (!uiController.injectMotionEventSequence(eventSequence)) {
                 return Tapper.Status.FAILURE
             }
+            uiControllerCallJournal.dumpToLog()
+            uiControllerCallJournal.callDeltaTime("injectMotionEvent", eventSequence.size)
             uiController.loopMainThreadForAtLeast(coolDownTime)
             return Tapper.Status.SUCCESS
         } finally {

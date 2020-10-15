@@ -48,7 +48,7 @@ public class DetoxAction {
     }
 
     public static ViewAction multiClick(int times) {
-        return actionWithAssertions(new GeneralClickAction(new DetoxMultiTap(times), GeneralLocation.CENTER, Press.FINGER, 0, 0));
+        return actionWithAssertions(new GeneralClickAction(new DetoxMultiTap(times, UiControllerJournal.getJournal()), GeneralLocation.CENTER, Press.FINGER, 0, 0));
     }
 
     public static ViewAction tapAtLocation(final int x, final int y) {

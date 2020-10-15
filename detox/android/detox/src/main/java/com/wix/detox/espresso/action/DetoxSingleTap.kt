@@ -1,3 +1,5 @@
 package com.wix.detox.espresso.action
 
-open class DetoxSingleTap : DetoxMultiTap(1)
+import com.wix.detox.common.proxy.MethodCallJournal
+
+open class DetoxSingleTap(uiControllerCallJournal: MethodCallJournal) : DetoxMultiTap(1, uiControllerCallJournal = uiControllerCallJournal)
