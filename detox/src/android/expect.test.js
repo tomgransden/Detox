@@ -168,6 +168,14 @@ describe('expect', () => {
       await expectToThrow(() => e.element(e.by.id('UniqueId005')).replaceText(3));
     });
 
+    it('Should set picker to value', async () => {
+      await e.element(e.by.id('UniqueId005')).setPickerToValue("Value");
+    });
+
+    it('Should set picker to value', async () => {
+      await expectToThrow(() => e.element(e.by.id('UniqueId005')).setPickerToValue(19240484));
+    });
+
     it('should scroll', async () => {
       await e.element(e.by.id('ScrollView161')).scroll(100);
       await e.element(e.by.id('ScrollView161')).scroll(100, 'down');
