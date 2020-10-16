@@ -70,6 +70,13 @@ class TypeTextAction extends Action {
   }
 }
 
+class SetPickerToValueAction extends Action {
+  constructor(value) {
+    super();
+    this._call = invoke.callDirectly(DetoxViewActionsApi.typeText(value));
+  }
+}
+
 class ReplaceTextAction extends Action {
   constructor(value) {
     super();
@@ -255,6 +262,10 @@ class Element {
 
   async typeText(value) {
     return await new ActionInteraction(this._invocationManager, this, new TypeTextAction(value)).execute();
+  }
+
+  async setPickerToValue(value) {
+    return await new ActionInteraction(this._invocationManager, this, new SetPickerToValueAction(value)).execute();
   }
 
   async replaceText(value) {
