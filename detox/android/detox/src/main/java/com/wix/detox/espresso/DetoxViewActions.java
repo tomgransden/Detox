@@ -1,5 +1,6 @@
 package com.wix.detox.espresso;
 
+import com.wix.detox.espresso.action.DetoxSetDatePickerDateAction;
 import com.wix.detox.espresso.action.DetoxSetPickerValueAction;
 import com.wix.detox.espresso.action.DetoxTypeTextAction;
 import com.wix.detox.espresso.action.RNClickAction;
@@ -23,5 +24,9 @@ public class DetoxViewActions {
 
     public static ViewAction setPickerToValue(String value){
         return actionWithAssertions(new DetoxSetPickerValueAction(value));
+    }
+
+    public static ViewAction setDatePickerDateAction(int day, int month, int year){
+        return actionWithAssertions(new DetoxSetDatePickerDateAction(day, month, year));
     }
 }

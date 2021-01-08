@@ -42,6 +42,29 @@ class DetoxViewActions {
     };
   }
 
+  static setDatePickerDateAction(day, month, year) {
+    if (typeof day !== "number") throw new Error("day should be a number, but got " + (day + (" (" + (typeof day + ")"))));
+    if (typeof month !== "number") throw new Error("month should be a number, but got " + (month + (" (" + (typeof month + ")"))));
+    if (typeof year !== "number") throw new Error("year should be a number, but got " + (year + (" (" + (typeof year + ")"))));
+    return {
+      target: {
+        type: "Class",
+        value: "com.wix.detox.espresso.DetoxViewActions"
+      },
+      method: "setDatePickerDateAction",
+      args: [{
+        type: "Integer",
+        value: day
+      }, {
+        type: "Integer",
+        value: month
+      }, {
+        type: "Integer",
+        value: year
+      }]
+    };
+  }
+
 }
 
 module.exports = DetoxViewActions;
