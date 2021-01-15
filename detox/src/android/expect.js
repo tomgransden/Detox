@@ -78,9 +78,9 @@ class SetPickerToValueAction extends Action {
 }
 
 class SetDatePickerDateAction extends Action {
-  constructor(day, month, year) {
+  constructor(date, format) {
     super();
-    this._call = invoke.callDirectly(DetoxViewActionsApi.setDatePickerDateAction(day, month, year));
+    this._call = invoke.callDirectly(DetoxViewActionsApi.setDatePickerDateAction(date, format));
   }
 }
 
@@ -275,8 +275,8 @@ class Element {
     return await new ActionInteraction(this._invocationManager, this, new SetPickerToValueAction(value)).execute();
   }
 
-  async setDatePickerDate(day, month, year) {
-    return await new ActionInteraction(this._invocationManager, this, new SetDatePickerDateAction(day, month, year)).execute();
+  async setDatePickerDate(date, format) {
+    return await new ActionInteraction(this._invocationManager, this, new SetDatePickerDateAction(date, format)).execute();
   }
 
   async replaceText(value) {
