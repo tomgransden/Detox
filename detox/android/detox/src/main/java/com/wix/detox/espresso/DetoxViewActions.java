@@ -26,7 +26,7 @@ public class DetoxViewActions {
         return actionWithAssertions(new DetoxSetPickerValueAction(value));
     }
 
-    public static ViewAction setDatePickerDateAction(int day, int month, int year){
-        return actionWithAssertions(new DetoxSetDatePickerDateAction(day, month, year));
+    public static ViewAction setDatePickerDateAction(String date, String format){
+        return actionWithAssertions(new DetoxSetDatePickerDateAction(date, format));
     }
 }
