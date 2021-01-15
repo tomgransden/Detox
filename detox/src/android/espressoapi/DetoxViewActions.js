@@ -42,26 +42,16 @@ class DetoxViewActions {
     };
   }
 
-  static setDatePickerDateAction(day, month, year) {
-    if (typeof day !== "number") throw new Error("day should be a number, but got " + (day + (" (" + (typeof day + ")"))));
-    if (typeof month !== "number") throw new Error("month should be a number, but got " + (month + (" (" + (typeof month + ")"))));
-    if (typeof year !== "number") throw new Error("year should be a number, but got " + (year + (" (" + (typeof year + ")"))));
+  static setDatePickerDateAction(date, format) {
+    if (typeof date !== "string") throw new Error("date should be a string, but got " + (date + (" (" + (typeof date + ")"))));
+    if (typeof format !== "string") throw new Error("format should be a string, but got " + (format + (" (" + (typeof format + ")"))));
     return {
       target: {
         type: "Class",
         value: "com.wix.detox.espresso.DetoxViewActions"
       },
       method: "setDatePickerDateAction",
-      args: [{
-        type: "Integer",
-        value: day
-      }, {
-        type: "Integer",
-        value: month
-      }, {
-        type: "Integer",
-        value: year
-      }]
+      args: [date, format]
     };
   }
 
